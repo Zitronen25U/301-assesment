@@ -6,8 +6,6 @@ import AddNewItem from './components/add-item.js';
 
 import Items from './components/items.js';
 
-
-
 const API_SERVER = process.env.REACT_APP_API;
 
 class App extends React.Component {
@@ -19,10 +17,10 @@ class App extends React.Component {
     }
   }
 
-  addItem = async (items) => {
-    await axios.post(`${API_SERVER}/items`, items);
+  addItem = async (item) => {
+    console.log('this is items in add item function' , item)
+    await axios.post(`${API_SERVER}/items`, item);
     this.getItems();
-    console.log('inside add');
   }
 
   deleteItem = async (id) => {
@@ -34,14 +32,12 @@ class App extends React.Component {
   updateItem = async (item) => {
     await axios.put(`${API_SERVER}/items/${item._id}`, item);
     this.getItems();
-    console.log('inside update');
   }
 
   getItems = async () => {
     const response = await axios.get(`${API_SERVER}/items`);
     const items = response.data;
     this.setState({items});
-    console.log('inside get');
   }
 
   async componentDidMount() {
@@ -53,8 +49,12 @@ class App extends React.Component {
       <div>
         <h1>Our Items</h1>
         <AddNewItem handleAddItem={this.addItem} />
-        <hr />
-        <Items handleDelete={this.deleteItem} itemsList={this.state.items} />
+
+        <Items 
+        handleDelete={this.deleteItem} 
+        itemsList={this.state.items} 
+        updateItem={this.updateItem}
+        />
       </div>
     );
   }

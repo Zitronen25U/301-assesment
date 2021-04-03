@@ -10,7 +10,7 @@ class Items extends React.Component {
       <section>
         <h2>Items....</h2>
         {
-          this.props.itemsList.forEach( (item,idx) =>
+          this.props.itemsList.map( (item,idx) =>
           
             <div key={idx}>
               
@@ -20,7 +20,10 @@ class Items extends React.Component {
 
               <blockquote>{item.notes}</blockquote>
 
-              <UpdateItemForm item={item} handleUpdate={this.props.handleUpdate} />
+              <UpdateItemForm 
+              item={item} 
+              updateItem={this.props.updateItem}
+              />
 
               <button
                 data-testid={`delete-button-${item.name}`}

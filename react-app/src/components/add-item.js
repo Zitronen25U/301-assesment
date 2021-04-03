@@ -17,12 +17,12 @@ class AddNewItem extends React.Component {
     const formData = this.state.formData;
     formData[field] = value;
     this.setState({formData});
-    console.log(value);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.handleAddItem()
+    this.props.handleAddItem(this.state.formData)
+    console.log(this.state.formData)
     console.log('submitted');
   }
 

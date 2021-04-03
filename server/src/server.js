@@ -1,7 +1,10 @@
 'use strict';
 
-require('dotenv').config();
+// IMPORTS
+// 
+// 
 
+require('dotenv').config();
 
 const express = require('express');
 
@@ -11,12 +14,17 @@ const cors = require('cors');
 
 app.use(cors());
 
-// Congigs
+const port=process.env.PORT
 
-const Data = require('./data.js');
+app.use(express.json());
 
 app.use(express.urlencoded({extended:true}));
 
+// 
+// 
+// FOLDER IMPORTS
+
+const Data = require('./data.js');
 
 app.get('/items', Data.getAllItems);
 
@@ -24,8 +32,14 @@ app.get('/items', Data.getAllItems);
 app.get('/items/:id', Data.getOneItem);
 
 
-// app.delete('/items/:id', Data.deleteOneItem);
+app.delete('/items/:id', Data.deleteOneItem);
 
+
+app.put('/items/:id', Data.updateOneItem);
+
+// 
+// 
+// Functions
 
 app.post('/items', Data.addAnItem);
 
@@ -39,7 +53,9 @@ app.use( (error,req,res,next) => {
   res.status(500).send(`My Bad ... ${error.message}`);
 });
 
-
+// 
+// 
+//  NO TOUCH
 
 module.exports = {
   server: app,
