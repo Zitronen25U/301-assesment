@@ -2,6 +2,8 @@ import React from 'react';
 
 import {Form, Button} from 'react-bootstrap';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 class AddNewItem extends React.Component {
 
   constructor(props) {
@@ -31,12 +33,12 @@ class AddNewItem extends React.Component {
     return (
       <Form data-testid="add-form" onSubmit={this.handleSubmit}>
         <Form.Group>
-          <Form.Label>Item</Form.Label>
-          <Form.Control type="text" placeholder="Enter email" data-testid="add-form-name" name="name" onChange={(e) => this.handleChange(e)} />
+          <Form.Label size="lg" type="text">Item</Form.Label>
+          <Form.Control type="text" placeholder="Enter Your Item" data-testid="add-form-name" name="name" onChange={(e) => this.handleChange(e)} />
         </Form.Group>
         <Form.Group>
           <Form.Label>Description</Form.Label>
-          <Form.Control type="text" placeholder="Description" data-testid="add-form-description" name="description" onChange={this.handleChange} />
+          <Form.Control type="text" placeholder="Enter the Item Description" data-testid="add-form-description" name="description" onChange={this.handleChange} />
         </Form.Group>
         <Button variant="primary" type="submit" onSubmit={this.handleSubmit}>
           Add Item

@@ -6,6 +6,12 @@ import AddNewItem from './components/add-item.js';
 
 import Items from './components/items.js';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Container from 'react-bootstrap/Container';
+
+import './components/app.css';
+
 const API_SERVER = process.env.REACT_APP_API;
 
 class App extends React.Component {
@@ -18,7 +24,7 @@ class App extends React.Component {
   }
 
   addItem = async (item) => {
-    console.log('this is items in add item function' , item)
+    console.log('this is items in add item function', item)
     await axios.post(`${API_SERVER}/items`, item);
     this.getItems();
   }
@@ -37,7 +43,7 @@ class App extends React.Component {
   getItems = async () => {
     const response = await axios.get(`${API_SERVER}/items`);
     const items = response.data;
-    this.setState({items});
+    this.setState({ items });
   }
 
   async componentDidMount() {
@@ -46,16 +52,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Our Items</h1>
-        <AddNewItem handleAddItem={this.addItem} />
+      <Container>
+        <div>
+          <Container id="addItem">
+            <h1>Our Items</h1>
+            <AddNewItem  handleAddItem={this.addItem} />
+          </Container>
 
-        <Items 
-        handleDelete={this.deleteItem} 
-        itemsList={this.state.items} 
-        updateItem={this.updateItem}
-        />
-      </div>
+          <Container id="itemHolder">
+            <Items
+              handleDelete={this.deleteItem}
+              itemsList={this.state.items}
+              updateItem={this.updateItem}
+            />
+          </Container>
+        </div>
+      </Container>
     );
   }
 }

@@ -2,6 +2,15 @@ import React from 'react';
 
 import UpdateItemForm from './update-item';
 
+import Button from 'react-bootstrap/Button';
+
+import Card from 'react-bootstrap/Card';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import './app.css';
+
+
 class Items extends React.Component {
 
   render() {
@@ -10,25 +19,29 @@ class Items extends React.Component {
       <section>
         <h2>Items....</h2>
         {
-          this.props.itemsList.map( (item,idx) =>
-          
+          this.props.itemsList.map((item, idx) =>
             <div key={idx}>
-              
-              <h3>{item.name}</h3>
+              <Card id="card" style={{ width: '18rem' }}>
+                <Card.Body>
+                  <Card.Title>{item.name}</Card.Title>
+                  <Card.Text>
+                    {item.description}
+                  </Card.Text>
+                  <Card.Text>
+                    {item.notes}
+                  </Card.Text>
+                  <Button
+                    variant="danger"
+                    data-testid={`delete-button-${item.name}`}
+                    onClick={() => this.props.handleDelete(item._id)}
+                  >Delete Item</Button>
+                </Card.Body>
+              </Card>
 
-              <p>{item.description}</p>
-
-              <blockquote>{item.notes}</blockquote>
-
-              <UpdateItemForm 
-              item={item} 
-              updateItem={this.props.updateItem}
+              <UpdateItemForm
+                item={item}
+                updateItem={this.props.updateItem}
               />
-
-              <button
-                data-testid={`delete-button-${item.name}`}
-                onClick={ () => this.props.handleDelete(item._id) }
-              >Delete Item</button>
             </div>
           )
         }

@@ -1,0 +1,22 @@
+body{
+  background-color: darkcyan;
+}
+
+#itemHolder {
+  margin-top: 3%;
+  margin-bottom: 3%;
+  width: max-content;
+  padding: 3px;
+}
+
+#addItem{
+  margin-top: 3%;
+  width: 300px;
+}
+
+#card{
+  margin-top: 8%;
+  background-color: bisque;
+  border: 2px solid black;
+
+}
