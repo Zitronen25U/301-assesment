@@ -31,6 +31,7 @@ class Items extends React.Component {
                     {item.notes}
                   </Card.Text>
                   <Button
+                    id="deleteButton"
                     variant="danger"
                     data-testid={`delete-button-${item.name}`}
                     onClick={() => this.props.handleDelete(item._id)}
